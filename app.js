@@ -1,5 +1,4 @@
 /*
-    
 Name: Manjit kaur
 Student ID: 301134995
 File name: Manjitkaur_COMP229_assignment2
@@ -50,9 +49,3 @@ app.use(function(req, res, next) {
 
 //Routes
 app.use('/', require('./routes/routes.js'));
-
-
-
-
-
-
