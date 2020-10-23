@@ -23,7 +23,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 router.post('/editcontact', ensureAuthenticated, (req, res) => {
     
     var obj = {name: req.body.name, phonenum: req.body.phone, email: req.body.email}
-    User.update({"contacts.phonenum": obj.phonenum}, {"$set": {
+    User.update({"contacts.phonenum": req.body.id}, {"$set": {
+ 
         'contacts.$.name': obj.name,
         'contacts.$.phonenum': obj.phonenum,
         'contacts.$.email': obj.email,
