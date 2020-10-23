@@ -27,10 +27,10 @@ Date: 23/10/2020
         }
         .edit-form
         {
-            width: 30%;
-            height: 30vh;
+            width: 25%;
+            height: 40vh;
             margin-top: 12%;
-            margin-left: 34%;
+            margin-left: 36%;
             position: absolute;
             background: #f6feff;
             border-radius: 10px;
@@ -55,11 +55,21 @@ Date: 23/10/2020
         {
             margin-top: 30px;
             padding: 10px;
-            margin-left: 40px;
+            margin-left: 70px;
             background: none;
             border: none;
             border-radius: 5px;
             border: 1px solid #000 !important;
+        }
+        .cancel-btn
+        {
+            padding: 10px;
+            border: none;
+            margin-left: 5px;
+            background: none;
+            border-radius: 5px;
+            border: 1px solid #000 !important;
+
         }
         .title
         {
@@ -79,7 +89,7 @@ Date: 23/10/2020
             <input type="text" name="email" class="input-text" value="<%= contact.email %>">
             <input type="hidden" name="id" class="input-text" value="<%= contact.id %>">
             <button class="input-btn">Save Changes</button>
-            <button class="input-btn" formaction="/dashboard", formmethod="GET">Cancel</button>
+            <button class="cancel-btn" formaction="/dashboard", formmethod="GET">Cancel</button>
         </form>
     </section>
 </body>
