@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
-const db = require('./backend/database');
+
 const User = require('./models/user.js');
 const { lookupService } = require('dns');
 
