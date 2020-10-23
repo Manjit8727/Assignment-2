@@ -12,7 +12,7 @@ const passport = require('passport');
 
 const mongoose = require('mongoose');
 const User = require('./models/user.js');
-var url = "mongodb://localhost:27017/assignment";
+var url = "mongodb+srv://user:1234@cluster0.flpmu.mongodb.net/test/assignment";
 var bodyParser = require("body-parser");
 app.use(express.urlencoded({ extended: true }));
 
