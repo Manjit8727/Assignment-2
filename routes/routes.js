@@ -15,6 +15,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../auth.js');
 
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login/login.ejs'))
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
+    req.user.contacts.sort( compare );
     res.render('dashboard.ejs', { user: req.user })
 }
 )
@@ -23,7 +24,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 router.post('/editcontact', ensureAuthenticated, (req, res) => {
   console.log(req.body)
     var obj = {name: req.body.name, phonenum: req.body.phone, email: req.body.email, id: parseInt( req.body.id)}
-    console.log(obj)
+
     
     User.updateOne({'_id' : req.user.id, "contacts.id": obj.id}, {"$set": {
         'contacts.$.name': obj.name,
@@ -52,7 +53,10 @@ res.redirect("/updatecontact")
 })
 
 router.get('/updatecontact', ensureAuthenticated, (req, res) => {
-console.log(req.user)
+
+
+req.user.contacts.sort( compare );
+
 
     res.render('updation.ejs', { user: req.user })
 });
@@ -79,6 +83,18 @@ router.post('/login',  (req, res, next) => {
 
 });
 
-
+function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const name1 = a.name.toUpperCase();
+    const name2 = b.name.toUpperCase();
+  
+    let comparison = 0;
+    if (name1 > name2) {
+      comparison = 1;
+    } else if (name1 < name2) {
+      comparison = -1;
+    }
+    return comparison;
+  }
 
 module.exports = router
