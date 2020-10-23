@@ -21,8 +21,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 
 
 router.post('/editcontact', ensureAuthenticated, (req, res) => {
-  
-    var obj = {name: req.body.name, phonenum: req.body.phone, email: req.body.email, id: req.body.id}
+  console.log(req.body)
+    var obj = {name: req.body.name, phonenum: req.body.phone, email: req.body.email, id: parseInt( req.body.id)}
     console.log(obj)
     
     User.updateOne({'_id' : req.user.id, "contacts.id": obj.id}, {"$set": {
@@ -52,6 +52,8 @@ res.redirect("/updatecontact")
 })
 
 router.get('/updatecontact', ensureAuthenticated, (req, res) => {
+console.log(req.user)
+
     res.render('updation.ejs', { user: req.user })
 });
 
