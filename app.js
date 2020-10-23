@@ -24,7 +24,8 @@ mongoose.connect(url, {useNewUrlParser: true}).then((db) => {
   
 
 }).catch((err) => console.log(err));
-app.listen(8080);
+app.listen(process.env.PORT || 3000);
+
 app.set("view engine", "ejs");
 
 
