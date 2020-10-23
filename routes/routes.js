@@ -21,14 +21,17 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 
 
 router.post('/editcontact', ensureAuthenticated, (req, res) => {
+  
+    var obj = {name: req.body.name, phonenum: req.body.phone, email: req.body.email, id: req.body.id}
+    console.log(obj)
     
-    var obj = {name: req.body.name, phonenum: req.body.phone, email: req.body.email}
-    User.update({'_id' : req.user.id, "contacts.phonenum": obj.phonenum}, {"$set": {
+    User.updateOne({'_id' : req.user.id, "contacts.id": obj.id}, {"$set": {
         'contacts.$.name': obj.name,
         'contacts.$.phonenum': obj.phonenum,
         'contacts.$.email': obj.email,
     }}).then(e =>{ 
-       
+    
+       console.log(e);
         res.redirect('/updatecontact')}).catch(err => console.log(err));
         
     });
